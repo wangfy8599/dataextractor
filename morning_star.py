@@ -1,16 +1,12 @@
 #-*- coding=utf-8 -*-
 
-import codecs
 import csv
 import logging
 import os
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
-import time
 import utils
-
-import log_config
 
 logger = logging.getLogger()
 
@@ -120,10 +116,3 @@ def download_data():
     driver.close()
     driver.quit()
 
-
-if __name__ == "__main__":
-    try:
-        log_config.init_logger()
-        download_data()
-    except Exception as ex:
-        logger.exception(ex)
