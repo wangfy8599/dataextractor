@@ -2,6 +2,7 @@
 
 import csv
 import logging
+import log_config
 import os
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -65,8 +66,8 @@ def apply_parameters(driver):
     option_checkbox = safe_find(driver, "cphMain_cblCategory_5")
     option_checkbox.click()
 
-    # 灵活配置
-    option_checkbox = safe_find(driver, "cphMain_cblCategory_6")
+    # 标准混合
+    option_checkbox = safe_find(driver, "cphMain_cblCategory_7")
     option_checkbox.click()
 
     # print("submitting")
@@ -116,3 +117,10 @@ def download_data():
     driver.close()
     driver.quit()
 
+
+if __name__ == "__main__":
+    try:
+        log_config.init_logger()
+        download_data()
+    except Exception as ex:
+        logger.exception(ex)
