@@ -101,6 +101,8 @@ def write_csv(driver):
             writer.writerow(cell_list)
             index += 1
 
+    logger.info("done")
+
 
 def download_data():
     url = 'https://cn.morningstar.com/quickrank/default.aspx'
