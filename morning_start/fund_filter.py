@@ -1,11 +1,8 @@
 #-*- coding=utf-8 -*-
 
-import csv
-import log_config
 import logging
-import morning_star
 import os
-import utils
+from common import *
 
 logger = logging.getLogger()
 

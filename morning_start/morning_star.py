@@ -2,17 +2,18 @@
 
 import csv
 import logging
-import log_config
 import os
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
-import utils
+
+from common import utils, log_config
 
 logger = logging.getLogger()
 
 
 def safe_find(driver, elem_id):
+    """Make sure a valid element can be found."""
     try:
         elem = driver.find_element_by_id("ctl00_" + elem_id)
     except NoSuchElementException:
@@ -21,6 +22,7 @@ def safe_find(driver, elem_id):
 
 
 def build_options():
+    """Build the option for Chrome driver"""
     opts = webdriver.ChromeOptions()
     # https://peter.sh/experiments/chromium-command-line-switches/
 
@@ -42,6 +44,7 @@ def build_options():
 
 
 def apply_parameters(driver):
+    """"""
     logging.debug("applying the parameters")
     #
     # print("selecting company")
@@ -80,6 +83,7 @@ def apply_parameters(driver):
 
 
 def write_csv(driver):
+    """"""
     result_dir = os.path.join(utils.script_dir(), "results")
     if not os.path.isdir(result_dir):
         os.mkdir(result_dir)
@@ -89,7 +93,7 @@ def write_csv(driver):
     content_table = safe_find(driver, "cphMain_gridResult")
     index = 0
     with open(csv_file, "w", newline='', encoding='utf-8-sig') as cf:
-        #cf.write(codecs.BOM_UTF8)
+        # cf.write(codecs.BOM_UTF8)
         writer = csv.writer(cf)
         for row in content_table.find_elements_by_tag_name("tr"):
             tag_name = "th" if index == 0 else "td"
@@ -100,11 +104,14 @@ def write_csv(driver):
             logger.debug(",".join(cell_list))
             writer.writerow(cell_list)
             index += 1
+            if index % 50 == 0:
+                logger.info("Updated {} funds.".format(index))
 
     logger.info("done")
 
 
 def download_data():
+    """"""
     url = 'https://cn.morningstar.com/quickrank/default.aspx'
     opts = build_options()
     driver = webdriver.Chrome(executable_path=r"D:\software\drivers\chromedriver.exe", options=opts)
