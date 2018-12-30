@@ -1,5 +1,6 @@
 #-*- coding=utf-8 -*-
 
+import csv
 import logging
 import os
 from common import *
@@ -25,11 +26,29 @@ watch_list = [
 ]
 
 
-def do_filter():
+def do_sort():
     result_dir = os.path.join(utils.script_dir(), "results")
     if not os.path.isdir(result_dir):
         os.mkdir(result_dir)
     in_path = os.path.join(result_dir, "morning_star.csv")
+    out_path = os.path.join(result_dir, "morning_star_sorted.csv")
+    logger.info("writing fund to " + in_path)
+
+    index = 0
+    with open(in_path, "r", encoding='utf-8-sig') as in_file, open(out_path, "w", newline='', encoding='utf-8-sig') as out_file:
+        in_csv = csv.reader(in_file)
+        out_csv = csv.writer(out_file)
+        header = next(in_csv)
+        out_csv.writerow(header)
+        in_csv_sorted = sorted(in_csv, key=lambda row: float(row[10]), reverse=True)
+        out_csv.writerows(in_csv_sorted.copy())
+
+
+def do_filter():
+    result_dir = os.path.join(utils.script_dir(), "results")
+    if not os.path.isdir(result_dir):
+        os.mkdir(result_dir)
+    in_path = os.path.join(result_dir, "morning_star_sorted.csv")
     out_path = os.path.join(result_dir, "morning_star_mine.csv")
     logger.info("writing fund to " + in_path)
 
@@ -49,6 +68,7 @@ def do_filter():
 if __name__ == "__main__":
     try:
         log_config.init_logger()
+        do_sort()
         do_filter()
     except Exception as ex:
         logger.exception(ex)

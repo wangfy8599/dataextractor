@@ -127,6 +127,7 @@ def download_data():
     driver.quit()
 
 
+
 if __name__ == "__main__":
     try:
         log_config.init_logger()
