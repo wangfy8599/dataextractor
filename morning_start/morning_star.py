@@ -27,7 +27,7 @@ def build_options():
     # https://peter.sh/experiments/chromium-command-line-switches/
 
     # Run in headless mode, i.e., without a UI or display server dependencies.
-    opts.add_argument('--headless')
+    # opts.add_argument('--headless')
 
     # Disables the sandbox for all process types that are normally sandboxed
     opts.add_argument('--no-sandbox')
@@ -43,7 +43,7 @@ def build_options():
     return opts
 
 
-def apply_parameters(driver):
+def apply_parameters(driver, first = False):
     """"""
     logging.debug("applying the parameters")
     #
@@ -53,12 +53,12 @@ def apply_parameters(driver):
     # time.sleep(2)
 
     # 三年评级
-    for i in range(5):
-        rating_checkbox = safe_find(driver, "cphMain_cblStarRating_{}".format(i))
-        rating_checkbox.click()
+    # for i in range(2):
+    #     rating_checkbox = safe_find(driver, "cphMain_cblStarRating_{}".format(i))
+    #     rating_checkbox.click()
 
-    # 主动管理
-    option_checkbox = safe_find(driver, "cphMain_cblGroup_3")
+    # 开放式
+    option_checkbox = safe_find(driver, "cphMain_cblGroup_0")
     option_checkbox.click()
 
     # 股票型
@@ -74,15 +74,31 @@ def apply_parameters(driver):
     option_checkbox.click()
 
     # print("submitting")
-    option_select = Select(safe_find(driver, 'cphMain_ddlPageSite'))
-    option_select.select_by_visible_text("全部")
+    # option_select = Select(safe_find(driver, 'cphMain_ddlPageSite'))
+    # option_select.select_by_visible_text("全部")
 
     # time.sleep(6)
-    # submit_button = safe_find(driver, "cphMain_btnGo")
-    # submit_button.click()
+    if first:
+        submit_button = safe_find(driver, "cphMain_btnGo")
+        submit_button.click()
 
 
-def write_csv(driver):
+def next_page(driver, page):
+    """"""
+    logging.debug("applying the parameters")
+
+    # 标准混合
+    try:
+        next_page_link = driver.find_elements_by_xpath("""a[@href="javascript:__doPostBack('ctl00$cphMain$AspNetPager1','{}')"]""".format(page))
+        next_page_link.click()
+        return True
+    except:
+        logger.info("No more data to read")
+        return False
+
+
+
+def write_csv(driver, first = False):
     """"""
     result_dir = os.path.join(utils.script_dir(), "results")
     if not os.path.isdir(result_dir):
@@ -92,7 +108,8 @@ def write_csv(driver):
 
     content_table = safe_find(driver, "cphMain_gridResult")
     index = 0
-    with open(csv_file, "w", newline='', encoding='utf-8-sig') as cf:
+    mode = "w" if first else "a"
+    with open(csv_file, mode, newline='', encoding='utf-8-sig') as cf:
         # cf.write(codecs.BOM_UTF8)
         writer = csv.writer(cf)
         for row in content_table.find_elements_by_tag_name("tr"):
@@ -118,14 +135,19 @@ def download_data():
     logging.debug("opening the web site " + url)
     driver.get(url)
 
-    apply_parameters(driver)
-
-    write_csv(driver)
+    for i in range(1, 100):
+        if i == 1:
+            apply_parameters(driver, True)
+            write_csv(driver, True)
+        else:
+            apply_parameters(driver)
+            write_csv(driver)
+        if not next_page(driver, i + 1):
+            break
 
     # time.sleep(300)  # Let the user actually see something!
     driver.close()
     driver.quit()
-
 
 
 if __name__ == "__main__":
