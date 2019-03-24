@@ -27,7 +27,7 @@ def build_options():
     # https://peter.sh/experiments/chromium-command-line-switches/
 
     # Run in headless mode, i.e., without a UI or display server dependencies.
-    # opts.add_argument('--headless')
+    opts.add_argument('--headless')
 
     # Disables the sandbox for all process types that are normally sandboxed
     opts.add_argument('--no-sandbox')
@@ -85,17 +85,17 @@ def apply_parameters(driver, first = False):
 
 def next_page(driver, page):
     """"""
-    logging.debug("applying the parameters")
+    logging.info("opening the page #{}".format(page))
 
-    # 标准混合
+    # 下一页
     try:
-        next_page_link = driver.find_elements_by_xpath("""a[@href="javascript:__doPostBack('ctl00$cphMain$AspNetPager1','{}')"]""".format(page))
-        next_page_link.click()
+        next_page_links = driver.find_element_by_link_text(">")
+        next_page_links.click()
         return True
-    except:
-        logger.info("No more data to read")
-        return False
+    except Exception as e:
+        logger.exception("No more data to read", e)
 
+    return False
 
 
 def write_csv(driver, first = False):
@@ -132,15 +132,15 @@ def download_data():
     url = 'https://cn.morningstar.com/quickrank/default.aspx'
     opts = build_options()
     driver = webdriver.Chrome(executable_path=r"D:\software\drivers\chromedriver.exe", options=opts)
-    logging.debug("opening the web site " + url)
+    logging.info("opening the web site " + url)
     driver.get(url)
 
-    for i in range(1, 100):
+    for i in range(1, 30):
         if i == 1:
             apply_parameters(driver, True)
             write_csv(driver, True)
         else:
-            apply_parameters(driver)
+            # apply_parameters(driver)
             write_csv(driver)
         if not next_page(driver, i + 1):
             break
