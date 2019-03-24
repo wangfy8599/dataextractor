@@ -135,7 +135,7 @@ def download_data():
     logging.info("opening the web site " + url)
     driver.get(url)
 
-    for i in range(1, 30):
+    for i in range(1, 50):
         if i == 1:
             apply_parameters(driver, True)
             write_csv(driver, True)
@@ -151,8 +151,10 @@ def download_data():
 
 
 if __name__ == "__main__":
-    try:
-        log_config.init_logger()
-        download_data()
-    except Exception as ex:
-        logger.exception(ex)
+    for i in range(5):
+        try:
+            log_config.init_logger()
+            download_data()
+            break
+        except Exception as ex:
+            logger.exception(ex)

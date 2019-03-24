@@ -26,11 +26,35 @@ watch_list = [
 ]
 
 
-def do_sort():
+def do_clean():
     result_dir = os.path.join(utils.script_dir(), "results")
     if not os.path.isdir(result_dir):
         os.mkdir(result_dir)
     in_path = os.path.join(result_dir, "morning_star.csv")
+    out_path = os.path.join(result_dir, "morning_star_clean.csv")
+    logger.info("writing fund to " + in_path)
+
+    index = 0
+    with open(in_path, "r", encoding='utf-8-sig') as in_file, open(out_path, "w", encoding='utf-8-sig') as out_file:
+        for line in in_file:
+            if index == 0:
+                out_file.write(line)
+            elif not line.startswith(",,代码"):
+                fields = line.split(",")
+                if len(fields) >= 11:
+                    try:
+                        float(fields[10])
+                        out_file.write(line)
+                    except:
+                        pass
+            index += 1
+
+
+def do_sort():
+    result_dir = os.path.join(utils.script_dir(), "results")
+    if not os.path.isdir(result_dir):
+        os.mkdir(result_dir)
+    in_path = os.path.join(result_dir, "morning_star_clean.csv")
     out_path = os.path.join(result_dir, "morning_star_sorted.csv")
     logger.info("writing fund to " + in_path)
 
@@ -68,6 +92,7 @@ def do_filter():
 if __name__ == "__main__":
     try:
         log_config.init_logger()
+        do_clean()
         do_sort()
         do_filter()
     except Exception as ex:
