@@ -45,9 +45,10 @@ def do_clean():
                 fields = line.split(",")
                 if len(fields) >= 11:
                     try:
+                        # skip the invalid number
                         float(fields[10])
                         out_file.write(line)
-                    except:
+                    except Exception as e:
                         pass
             index += 1
 

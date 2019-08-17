@@ -90,15 +90,18 @@ def next_page(driver, page):
     # 下一页
     try:
         next_page_links = driver.find_element_by_link_text(">")
-        next_page_links.click()
-        return True
+        if next_page_links:
+            next_page_links.click()
+            return True
+        else:
+            logger.info("No more data to read.")
+            return False
     except Exception as e:
-        logger.exception("No more data to read", e)
+        logger.exception("No more data to read")
+        return False
 
-    return False
 
-
-def write_csv(driver, first = False):
+def write_csv(driver, first=False):
     """"""
     result_dir = os.path.join(utils.script_dir(), "results")
     if not os.path.isdir(result_dir):
@@ -121,10 +124,9 @@ def write_csv(driver, first = False):
             logger.debug(",".join(cell_list))
             writer.writerow(cell_list)
             index += 1
-            if index % 50 == 0:
-                logger.info("Updated {} funds.".format(index))
 
-    logger.info("done")
+    logger.info("added {} items".format(index))
+    return index
 
 
 def download_data():
@@ -135,14 +137,16 @@ def download_data():
     logging.info("opening the web site " + url)
     driver.get(url)
 
-    for i in range(1, 50):
+    item_count = 0
+    for i in range(1, 100):
         if i == 1:
             apply_parameters(driver, True)
-            write_csv(driver, True)
+            item_count = write_csv(driver, True)
         else:
             # apply_parameters(driver)
-            write_csv(driver)
-        if not next_page(driver, i + 1):
+            item_count = write_csv(driver)
+        if (item_count < 26) or (not next_page(driver, i + 1)):
+            logger.info("extract done.")
             break
 
     # time.sleep(300)  # Let the user actually see something!
