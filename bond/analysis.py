@@ -60,7 +60,7 @@ def write_report(df_1, df_2, df_3):
 
 
 def main():
-    with open(r"D:\github\dataextractor\bond\2022\10\28.html", "r") as f:
+    with open(r"D:\github\dataextractor\bond\2022\11\9.html", "r") as f:
         df_all = pd.read_html(f)
         df_all = format_data(df_all[0])
         df_all = df_all[["转债代码", "转债名称", "转债价格", "股价", "转股溢价率", "纯债价值", "转债溢价率", "剩余年限", "转债余额", "税前收益率", "辰星双底"]]
