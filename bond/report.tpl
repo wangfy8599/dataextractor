@@ -24,8 +24,11 @@
   
 <body>
 
-<h3>我的自选</h3>
+<h3>我的自选 (双低排序)</h3>
 <%table_place_holder_2%>
+
+<h3>我的自选 (辰星三低)</h3>
+<%table_place_holder_4%>
 
 <h3>我的待选</h3>
 <%table_place_holder_3%>

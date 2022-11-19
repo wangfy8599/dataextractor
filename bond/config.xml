@@ -3,13 +3,9 @@
         <bond code="111006" name="嵘泰转债"/>
         <bond code="113647" name="禾丰转债"/>
         <bond code="118000" name="嘉元转债"/>
-        <bond code="127066" name="科利转债"/>
         <bond code="123145" name="药石转债"/>
         <bond code="123072" name="乐歌转债"/>
-        <bond code="127051" name="博杰转债"/>
         <bond code="128120" name="联诚转债"/>
-        <bond code="110085" name="通22转债"/>
-        <bond code="113602" name="景20转债"/>
         <bond code="127019" name="国城转债"/>
         <bond code="127052" name="西子转债"/>
         <bond code="113570" name="百达转债"/>
@@ -20,13 +16,11 @@
         <bond code="123131" name="奥飞转债"/>
         <bond code="128083" name="新北转债"/>
         <bond code="113048" name="晶科转债"/>
-        <bond code="110057" name="现代转债"/>
         <bond code="113622" name="杭叉转债"/>
         <bond code="127046" name="百润转债"/>
         <bond code="113605" name="大参转债"/>
         <bond code="113605" name="大参转债"/>
         <bond code="113584" name="家悦转债"/>
-        <bond code="113047" name="旗滨转债"/>
         <bond code="128133" name="奇正转债"/>
         <bond code="113054" name="绿动转债"/>
         <bond code="128072" name="翔鹭转债"/>
@@ -36,6 +30,16 @@
         <bond code="123133" name="佩蒂转债"/>
     </watch_list>
     <my_list>
+        <bond code="118026" name="利元转债"/>
+        <bond code="127075" name="百川转2"/>
+        <bond code="113563" name="柳药转债"/>
+        <bond code="110085" name="通22转债"/>
+        <bond code="127066" name="科利转债"/>
+        <bond code="113602" name="景20转债"/>
+        <bond code="110057" name="现代转债"/>
+        <bond code="127051" name="博杰转债"/>
+        <bond code="113047" name="旗滨转债"/>
+        <bond code="118022" name="锂科转债"/>
         <bond code="110089" name="兴发转债"/>
         <bond code="127027" name="靖远转债"/>
         <bond code="128087" name="孚日转债"/>
