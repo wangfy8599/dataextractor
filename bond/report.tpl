@@ -24,17 +24,23 @@
   
 <body>
 
-<h3>我的自选 (双低排序)</h3>
+<h3>我的持仓 (双低排序)</h3>
 <%table_place_holder_2%>
-
-<h3>我的自选 (辰星三低)</h3>
-<%table_place_holder_4%>
 
 <h3>我的待选</h3>
 <%table_place_holder_3%>
 
 <h3>辰星双低 - Top 30</h3>
 <%table_place_holder_1%>
+
+<h3>我的持仓 (辰星三低)</h3>
+<%table_place_holder_4%>
+
+<h3>我的待选 (辰星三低)</h3>
+<%table_place_holder_5%>
+
+<h3>(辰星三低) - Top 30</h3>
+<%table_place_holder_6%>
 
 </body>
   
