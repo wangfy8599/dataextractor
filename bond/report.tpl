@@ -42,6 +42,15 @@
 <h3>(辰星三低) - Top 30</h3>
 <%table_place_holder_6%>
 
+<h3>税前收益率</h3>
+<%table_place_holder_7%>
+
+<h3>股价高</h3>
+<%table_place_holder_8%>
+
+<h3>转债余额</h3>
+<%table_place_holder_9%>
+
 </body>
   
 </html>

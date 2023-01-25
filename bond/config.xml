@@ -8,15 +8,12 @@
         <bond code="128120" name="联诚转债"/>
         <bond code="127019" name="国城转债"/>
         <bond code="127052" name="西子转债"/>
-        <bond code="113570" name="百达转债"/>
-        <bond code="128069" name="华森转债"/>
         <bond code="123127" name="耐普转债"/>
         <bond code="113625" name="江山转债"/>
         <bond code="123131" name="奥飞转债"/>
         <bond code="113048" name="晶科转债"/>
         <bond code="113622" name="杭叉转债"/>
         <bond code="127046" name="百润转债"/>
-        <bond code="113605" name="大参转债"/>
         <bond code="113605" name="大参转债"/>
         <bond code="113584" name="家悦转债"/>
         <bond code="113054" name="绿动转债"/>
@@ -25,12 +22,27 @@
         <bond code="113059" name="福莱转债"/>
         <bond code="123133" name="佩蒂转债"/>
         <bond code="123064" name="万孚转债"/>
+        <bond code="118012" name="微芯转债"/>
+        <bond code="123151" name="康医转债"/>
+        <bond code="127062" name="垒知转债"/>
+        <bond code="123082" name="北陆转债"/>
+        <bond code="118006" name="阿拉转债" desc="提议下修，不想还钱"/>
+        <bond code="113658" name="密卫转债" desc="股价高，"/>
+        <bond code="118025" name="奕瑞转债" desc="股价高，"/>
+        <bond code="113047" name="旗滨转债"/>
+        <bond code="113570" name="百达转债"/>
+        <bond code="110083" name="苏租转债"/>
         <bond code="128087" name="孚日转债"/>
-        <bond code="113591" name="胜达转债"/>
-    </watch_list>
-    <my_list>
-        <bond code="128037" name="岩土转债"/>
         <bond code="128049" name="华源转债"/>
+  </watch_list>
+    <my_list>
+        <bond code="113542" name="好客转债"/>
+        <bond code="123126" name="瑞丰转债" desc="税前收益高，规模低，溢价高，未来六个月至 2023 年 2月 21 日不下修"/>
+        <bond code="123063" name="大禹转债"/>
+        <bond code="113591" name="胜达转债"/>
+        <bond code="118000" name="嘉元转债" desc="股价高，"/>
+        <bond code="113060" name="浙22转债"/>
+        <bond code="128037" name="岩土转债"/>
         <bond code="128042" name="凯中转债"/>
         <bond code="128133" name="奇正转债"/>
         <bond code="128083" name="新北转债"/>
@@ -42,7 +54,6 @@
         <bond code="113602" name="景20转债"/>
         <bond code="110057" name="现代转债"/>
         <bond code="127051" name="博杰转债"/>
-        <bond code="113047" name="旗滨转债"/>
         <bond code="118022" name="锂科转债"/>
         <bond code="110089" name="兴发转债"/>
         <bond code="127027" name="靖远转债"/>
@@ -51,15 +62,15 @@
         <bond code="118005" name="天奈转债"/>
         <bond code="118015" name="芯海转债"/>
         <bond code="123122" name="富瀚转债"/>
-        <bond code="113619" name="世运转债"/>
         <bond code="113053" name="隆22转债"/>
-        <bond code="123087" name="明电转债"/>
+        <bond code="113619" name="世运转债" weightage="8" desc="绩优，股息1.96%"/>
+        <bond code="123087" name="明电转债" desc="绩优，股息1.96%"/>
         <bond code="123128" name="首华转债"/>
         <bond code="113604" name="多伦转债"/>
         <bond code="110058" name="永鼎转债"/>
         <bond code="123076" name="强力转债"/>
         <bond code="113593" name="沪工转债"/>
-        <bond code="123101" name="拓斯转债"/>
+        <bond code="123101" name="拓斯转债" weightage="8" desc="机器人"/>
         <bond code="113624" name="正川转债"/>
         <bond code="113610" name="灵康转债"/>
         <bond code="113606" name="荣泰转债"/>
@@ -98,7 +109,6 @@
         <bond code="113628" name="晨丰转债"/>
         <bond code="110079" name="杭银转债"/>
         <bond code="113505" name="杭电转债"/>
-        <bond code="110083" name="苏租转债"/>
         <bond code="113633" name="科沃转债"/>
         <bond code="123124" name="晶瑞转2"/>
         <bond code="127012" name="招路转债"/>
