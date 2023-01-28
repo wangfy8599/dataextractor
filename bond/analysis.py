@@ -1,10 +1,11 @@
 import pandas as pd
 import common
-from config import read_my_list, read_watch_list
+from config import read_my_list, read_watch_list, read_high_weightage_list
 import constant
 
 
-def write_report(df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9):
+def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9):
+    html_0 = df_0.to_html(classes='table table-stripped')
     html_1 = df_1.to_html(classes='table table-stripped')
     html_2 = df_2.to_html(classes='table table-stripped')
     html_3 = df_3.to_html(classes='table table-stripped')
@@ -18,7 +19,8 @@ def write_report(df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9):
     # write html to file
     with open("report.tpl", "r") as input_file, open("report.html", "w") as output_file:
         template_content = input_file.read()
-        final_html = template_content.replace("<%table_place_holder_1%>", html_1) \
+        final_html = template_content.replace("<%table_place_holder_0%>", html_0) \
+            .replace("<%table_place_holder_1%>", html_1) \
             .replace("<%table_place_holder_2%>", html_2) \
             .replace("<%table_place_holder_3%>", html_3) \
             .replace("<%table_place_holder_4%>", html_4) \
@@ -44,9 +46,15 @@ def main():
 
         write_result(df_all)
 
+        # 自选 (低溢价)
+        df_0 = df_all[df_all["转债代码"].isin(read_high_weightage_list())]
+        df_0 = df_0.sort_values(by=['转股溢价率'], ascending=True)
+        df_0.reset_index(drop=True, inplace=True)
+        df_0.index = df_0.index + 1
+
         # 辰星双低
         df_1 = df_all.query(""" 股价 > 3 and 剩余年限 > "1.00" and PB > 1.3 """)
-        df_1 = df_1.query(""" 转债价格 < 125 and not (转债名称.str.contains("\\*")) """).sort_values(by=['辰星双低'],ascending=True).head(30)
+        df_1 = df_1.query(""" 转债价格 < 125 and not (转债名称.str.contains("\\*")) """).sort_values(by=['辰星双低'], ascending=True).head(30)
         df_1.reset_index(drop=True, inplace=True)
         df_1.index = df_1.index + 1
 
@@ -107,7 +115,7 @@ def main():
         df_9.index = df_9.index + 1
 
         #
-        write_report(df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9)
+        write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9)
 
 
 if __name__ == "__main__":

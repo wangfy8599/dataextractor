@@ -24,6 +24,9 @@
   
 <body>
 
+<h3>我的持仓 (低溢价)</h3>
+<%table_place_holder_0%>
+
 <h3>我的持仓 (双低排序)</h3>
 <%table_place_holder_2%>
 
