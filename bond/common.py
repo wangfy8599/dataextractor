@@ -40,7 +40,7 @@ def format_data(df):
     df["转股溢价率"] = df["转股溢价率"].apply(change_premium_rate)
     df["辰星双低"] = df["转债溢价率"].astype(float) + df["转股溢价率"].astype(float)
     df["辰星三低"] = df["辰星双低"].astype(float) + df["转债余额"].astype(float) * 3
-    df['股票代码'] = df['股票代码'].str.zfill(6)
+    df['股票代码'] = df['股票代码'].astype(str).str.zfill(6)
 
     return df
 
