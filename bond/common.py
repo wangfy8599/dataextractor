@@ -29,14 +29,14 @@ def change_remain_days(x):
 
 def change_premium_rate(x):
     x = x.replace("%", "")
-    return "{:.02f}".format(float(x))
+    return float(x)
 
 
 def format_data(df):
     df = df.rename(columns=lambda s: s.replace(" ", "").replace("/", ""))
     # process column
     df["剩余年限"] = df["剩余年限"].apply(change_remain_days)
-    df["转债溢价率"] = df["转债价格"] - df["纯债价值"]
+    df["转债溢价率"] = (df["转债价格"] - df["纯债价值"]).astype(float) / df["纯债价值"] * 100
     df["转股溢价率"] = df["转股溢价率"].apply(change_premium_rate)
     df["辰星双低"] = df["转债溢价率"].astype(float) + df["转股溢价率"].astype(float)
     df["辰星三低"] = df["辰星双低"].astype(float) + df["转债余额"].astype(float) * 3

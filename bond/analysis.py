@@ -37,6 +37,9 @@ def write_result(df):
 
 
 def main():
+    # round to two decimal places in python pandas
+    pd.options.display.float_format = '{:.2f}'.format
+
     with open(constant.fund_input_file, "r") as f:
         df_all = pd.read_html(f)
         df_all = common.format_data(df_all[0])
@@ -48,6 +51,7 @@ def main():
 
         # 自选 (低溢价)
         df_0 = df_all[df_all["转债代码"].isin(read_high_weightage_list())]
+        df_0 = df_0.query(""" 转债价格 < 128 """)
         df_0 = df_0.sort_values(by=['转股溢价率'], ascending=True)
         df_0.reset_index(drop=True, inplace=True)
         df_0.index = df_0.index + 1
