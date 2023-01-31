@@ -39,7 +39,7 @@ def generate_report():
     df_2.index = df_2.index + 1
 
     df_3 = df_all[df_all["转债代码"].isin(config.read_all_watch_list())]
-    df_3 = df_3.sort_values(by=['转股溢价率'], ascending=True)
+    df_3 = df_3.sort_values(by=['辰星双低'], ascending=True)
     df_3.reset_index(drop=True, inplace=True)
     df_3.index = df_3.index + 1
 
@@ -54,11 +54,16 @@ def generate_report():
     df_5.index = df_5.index + 1
 
     df_6 = df_all.query(""" 转债价格 < 130 and 股价 > 3 and 剩余年限 > 1.0 and PB > 1.0 and 营收同比>0 and 利润同比>10 and ROE>9 and 每股现金流>0 """)
-    df_6 = df_6.sort_values(by=['转股溢价率'], ascending=True).head(3000)
+    df_6 = df_6.sort_values(by=['辰星双低'], ascending=True).head(3000)
     df_6.reset_index(drop=True, inplace=True)
     df_6.index = df_6.index + 1
 
-    write_report([df_0, df_1, df_2, df_3, df_4, df_5, df_6])
+    df_7 = df_all.query(""" 转债价格 < 125 and 股价 > 3 and 剩余年限 > 1.0 and PB > 1.0 and 营收同比>0 and 利润同比>10 and ROE>9 """)
+    df_7 = df_7.sort_values(by=['辰星三低'], ascending=True).head(3000)
+    df_7.reset_index(drop=True, inplace=True)
+    df_7.index = df_7.index + 1
+
+    write_report([df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7])
 
 
 def write_report(df_list):

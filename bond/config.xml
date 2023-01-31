@@ -23,15 +23,18 @@
         <bond code="110083" name="苏租转债"/>
         <bond code="128087" name="孚日转债"/>
         <bond code="128049" name="华源转债"/>
-        <bond code="123044" name="红相转债"/>
-        <bond code="113659" name="莱克转债" weightage="5"/>
         <bond code="127073" name="天赐转债" weightage="1"/>
         <bond code="123165" name="回天转债" weightage="8" desc="光伏，汽车"/>
-        <bond code="113644" name="艾迪转债" weightage="5" desc="机器人"/>
         <bond code="123170" name="南电转债" weightage="8" desc="半导体，光刻胶"/>
         <bond code="128101" name="联创转债" weightage="8" desc="车载摄像头"/>
+        <bond code="118026" name="利元转债" weightage="1"/>
+        <bond code="110084" name="贵燃转债"/>
+        <bond code="113631" name="皖天转债"/>
   </watch_list>
     <my_list>
+        <bond code="113644" name="艾迪转债" weightage="5" desc="机器人"/>
+        <bond code="123044" name="红相转债"/>
+        <bond code="113659" name="莱克转债" weightage="5"/>
         <bond code="113542" name="好客转债"/>
         <bond code="123126" name="瑞丰转债" desc="税前收益高，规模低，溢价高，未来六个月至 2023 年 2月 21 日不下修"/>
         <bond code="123063" name="大禹转债"/>
@@ -42,7 +45,6 @@
         <bond code="128042" name="凯中转债"/>
         <bond code="128133" name="奇正转债"/>
         <bond code="128083" name="新北转债"/>
-        <bond code="118026" name="利元转债" weightage="1"/>
         <bond code="127075" name="百川转2" weightage="1"/>
         <bond code="113563" name="柳药转债" weightage="1"/>
         <bond code="110085" name="通22转债" weightage="6"/>
@@ -79,7 +81,6 @@
         <bond code="128063" name="未来转债"/>
         <bond code="128136" name="立讯转债" weightage="6"/>
         <bond code="128114" name="正邦转债"/>
-        <bond code="110084" name="贵燃转债"/>
         <bond code="118004" name="博瑞转债" weightage="6"/>
         <bond code="128131" name="崇达转2" weightage="6"/>
         <bond code="127061" name="美锦转债"/>
@@ -99,7 +100,7 @@
         <bond code="123099" name="普利转债" weightage="8"/>
         <bond code="128138" name="侨银转债"/>
         <bond code="127041" name="弘亚转债"/>
-        <bond code="113639" name="华正转债" weightage="0"/>
+        <bond code="113639" name="华正转债" weightage="0" desc="华正新材2022年预计净利3300万-4000万同比减少83%-86% 产品毛利率下降"/>
         <bond code="127005" name="长证转债"/>
         <bond code="123117" name="健帆转债"/>
         <bond code="113628" name="晨丰转债"/>

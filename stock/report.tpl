@@ -24,29 +24,9 @@
   
 <body>
 
-<h3>重仓转债 (转股溢价率)</h3>
+<h3>stock list</h3>
 <%table_place_holder_0%>
 
-<h3>观察转债 (ROE排序)</h3>
-<%table_place_holder_1%>
-
-<h3>观察转债 (净利润同比增长排序)</h3>
-<%table_place_holder_2%>
-
-<h3>观察转债 (低转股溢价率排序)</h3>
-<%table_place_holder_3%>
-
-<h3>转债 (ROE排序)</h3>
-<%table_place_holder_4%>
-
-<h3>转债 (净利润同比增长排序)</h3>
-<%table_place_holder_5%>
-
-<h3>转债 (低转股溢价率排序)</h3>
-<%table_place_holder_6%>
-
-<h3>转债 (辰星三低排序)</h3>
-<%table_place_holder_7%>
 
 </body>
   
