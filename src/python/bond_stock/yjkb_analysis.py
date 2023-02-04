@@ -1,24 +1,12 @@
-import config
+from bond import config
 from common import constants
 import pandas as pd
-
-
-def write_report(df_list):
-    # write html to file
-    with open(constants.fund_template_file, "r") as input_file, open(constants.fund_stock_report_file, "w") as output_file:
-        template_content = input_file.read()
-        index = 0
-        for df in df_list:
-            place_holder = "table_place_holder_{}".format(index)
-            index += 1
-            html_content = df.to_html(classes='table table-stripped')
-            template_content = template_content.replace("<%{}%>".format(place_holder), html_content)
-        output_file.write(template_content)
+from bond_stock_helper import write_html_report
 
 
 def generate_report():
-    fund_result = pd.read_csv(constants.fund_csv_file)
-    stock_result = pd.read_csv(constants.stock_csv_file)
+    fund_result = pd.read_csv(constants.bond_csv_file)
+    stock_result = pd.read_csv(constants.yjkb_csv_file)
     df_all = pd.merge(fund_result, stock_result, how='left', on='股票代码')
     df_all = df_all.rename(columns=lambda s: s.replace("-", "").replace("/", ""))
     df_all = df_all.rename(columns=lambda s: s.replace("营业收入同比增长", "营收同比").replace("营业收入季度环比增长", "营收环比"))
@@ -70,11 +58,8 @@ def generate_report():
     df_7.reset_index(drop=True, inplace=True)
     df_7.index = df_7.index + 1
 
-    write_report([df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7])
+    write_html_report([df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7], constants.bond_yjkb_report_file)
 
 
 if __name__ == "__main__":
-    # round to two decimal places in python pandas
-    pd.options.display.float_format = '{:.2f}'.format
-
     generate_report()
