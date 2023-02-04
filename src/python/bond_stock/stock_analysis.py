@@ -1,7 +1,7 @@
 from bond import config
 from common import constants
 import pandas as pd
-from bond_stock_helper import write_html_report
+from bond_stock_helper import write_stock_report
 
 
 def generate_report():
@@ -58,7 +58,7 @@ def generate_report():
     df_7.reset_index(drop=True, inplace=True)
     df_7.index = df_7.index + 1
 
-    write_html_report([df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7], constants.bond_stock_report_file)
+    write_stock_report([df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7], constants.bond_stock_report_file)
 
 
 if __name__ == "__main__":

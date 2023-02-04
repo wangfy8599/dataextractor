@@ -1,7 +1,6 @@
 <bonds>
     <watch_list>
         <bond code="123145" name="药石转债" weightage="5"/>
-        <bond code="128120" name="联诚转债"/>
         <bond code="123127" name="耐普转债"/>
         <bond code="123131" name="奥飞转债"/>
         <bond code="113048" name="晶科转债" weightage="0"/>
@@ -30,19 +29,19 @@
         <bond code="123165" name="回天转债" weightage="8" desc="光伏，汽车"/>
         <bond code="123170" name="南电转债" weightage="8" desc="半导体，光刻胶"/>
         <bond code="128101" name="联创转债" weightage="8" desc="车载摄像头"/>
-        <bond code="118026" name="利元转债" weightage="1"/>
-        <bond code="110084" name="贵燃转债"/>
         <bond code="113631" name="皖天转债"/>
-        <bond code="128083" name="新北转债"/>
         <bond code="127027" name="靖远转债"/>
         <bond code="113591" name="胜达转债"/>
+        <bond code="123088" name="威唐转债"/>
+        <bond code="128132" name="交建转债"/>
         <bond code="127066" name="科利转债" weightage="1" desc="特斯拉4680电池结构件"/>
   </watch_list>
     <my_list>
+        <bond code="118026" name="利元转债" weightage="1"/>
         <bond code="113524" name="奇精转债" desc="低规模"/>
         <bond code="128049" name="华源转债"/>
         <bond code="113644" name="艾迪转债" weightage="5" desc="机器人"/>
-        <bond code="123044" name="红相转债"/>
+        <bond code="123044" name="红相转债" desc="2022亏转盈"/>
         <bond code="113659" name="莱克转债" weightage="5"/>
         <bond code="113542" name="好客转债"/>
         <bond code="123126" name="瑞丰转债" desc="税前收益高，规模低，溢价高，未来六个月至 2023 年 2月 21 日不下修"/>
@@ -50,7 +49,7 @@
         <bond code="118000" name="嘉元转债" weightage="1" desc="股价高，"/>
         <bond code="113060" name="浙22转债"/>
         <bond code="128037" name="岩土转债"/>
-        <bond code="128042" name="凯中转债"/>
+        <bond code="128042" name="凯中转债" desc="2022扣非占比低"/>
         <bond code="128133" name="奇正转债"/>
         <bond code="127075" name="百川转2" weightage="1"/>
         <bond code="113563" name="柳药转债" weightage="1"/>
@@ -70,7 +69,7 @@
         <bond code="123087" name="明电转债" weightage="6" desc="绩优，股息1.96%"/>
         <bond code="123128" name="首华转债"/>
         <bond code="113604" name="多伦转债"/>
-        <bond code="110058" name="永鼎转债"/>
+        <bond code="110058" name="永鼎转债" desc="2022 扣除 low"/>
         <bond code="123076" name="强力转债"/>
         <bond code="113593" name="沪工转债"/>
         <bond code="123101" name="拓斯转债" weightage="8" desc="机器人"/>

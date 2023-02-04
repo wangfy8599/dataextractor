@@ -8,8 +8,10 @@ bond_template_file = base_dir + r"\template\bond_report.tpl"
 bond_csv_file = base_dir + r"\result\bond.csv"
 bond_report_file = base_dir + r"\result\bond_report.html"
 bond_stock_template_file = base_dir + r"\template\bond_stock_report.tpl"
+bond_stock_2_template_file = base_dir + r"\template\bond_stock_2_report.tpl"
 bond_stock_report_file = base_dir + r"\result\bond_stock_report.html"
 bond_yjkb_report_file = base_dir + r"\result\bond_yjkb_report.html"
+bond_yjyg_report_file = base_dir + r"\result\bond_yjyg_report.html"
 
 stock_csv_file = base_dir + r"\result\stock.csv"
 stock_report_file = base_dir + r"\result\stock.html"
@@ -28,5 +30,6 @@ yjbg_report_file = base_dir + r"\result\yjbg.html"
 yjkb_csv_file = base_dir + r"\result\yjkb.csv"
 yjkb_report_file = base_dir + r"\result\yjkb.html"
 
-# 业绩快报
+# 业绩预告
+yjyg_raw_csv_file = base_dir + r"\result\yjyg_raw.csv"
 yjyg_csv_file = base_dir + r"\result\yjyg.csv"
