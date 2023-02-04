@@ -1,6 +1,6 @@
 import pandas as pd
 
-CONFIG_FILE = "./config.xml"
+CONFIG_FILE = "config.xml"
 
 
 def read_all_watch_list():

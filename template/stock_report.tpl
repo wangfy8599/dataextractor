@@ -24,9 +24,11 @@
   
 <body>
 
-<h3>stock list</h3>
+<h3>watch list</h3>
 <%table_place_holder_0%>
 
+<h3>all list</h3>
+<%table_place_holder_1%>
 
 </body>
   

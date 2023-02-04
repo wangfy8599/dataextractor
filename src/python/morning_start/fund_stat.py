@@ -3,7 +3,7 @@
 import csv
 import logging
 import os
-from common import *
+from src.python.common import *
 
 logger = logging.getLogger()
 

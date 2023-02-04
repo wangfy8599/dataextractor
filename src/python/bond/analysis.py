@@ -1,8 +1,9 @@
 import pandas as pd
 
-import common
-import constant
+import fund_util
 from config import read_my_list, read_watch_list, read_high_weightage_list
+from common import constants
+from common.analysis_util import write_csv_file
 
 
 def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9):
@@ -18,7 +19,7 @@ def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9):
     html_9 = df_9.to_html(classes='table table-stripped')
 
     # write html to file
-    with open("report.tpl", "r") as input_file, open("report.html", "w") as output_file:
+    with open(constants.fund_template_file, "r") as input_file, open(constants.fund_report_file, "w") as output_file:
         template_content = input_file.read()
         final_html = template_content.replace("<%table_place_holder_0%>", html_0) \
             .replace("<%table_place_holder_1%>", html_1) \
@@ -33,22 +34,18 @@ def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9):
         output_file.write(final_html)
 
 
-def write_result(df):
-    df.to_csv(constant.fund_result_file, index=False, lineterminator='\n', encoding='utf_8_sig')
-
-
 def main():
     # round to two decimal places in python pandas
     pd.options.display.float_format = '{:.2f}'.format
 
-    with open(constant.fund_input_file, "r", encoding="utf-8") as f:
+    with open(constants.fund_input_file, "r", encoding="utf-8") as f:
         df_all = pd.read_html(f)
-        df_all = common.format_data(df_all[0])
+        df_all = fund_util.format_data(df_all[0])
         df_all = df_all[
             ["转债代码", "转债名称", "转债价格", "股票代码", "股价", "转股溢价率", "纯债价值", "转债溢价率", "剩余年限",
              "转债余额", "税前收益率", "PB", "辰星双低", "辰星三低"]]
 
-        write_result(df_all)
+        write_csv_file(df_all, constants.fund_csv_file)
 
         # 自选 (低溢价)
         df_0 = df_all[df_all["转债代码"].isin(read_high_weightage_list())]

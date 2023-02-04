@@ -21,8 +21,11 @@
         <bond code="113570" name="百达转债"/>
         <bond code="128142" name="新乳转债"/>
         <bond code="110083" name="苏租转债"/>
+        <bond code="113566" name="翔港转债" desc="低规模"/>
         <bond code="128087" name="孚日转债"/>
-        <bond code="128049" name="华源转债"/>
+        <bond code="123158" name="宙邦转债"/>
+        <bond code="111010" name="立昂转债"/>
+        <bond code="118014" name="高测转债"/>
         <bond code="127073" name="天赐转债" weightage="1"/>
         <bond code="123165" name="回天转债" weightage="8" desc="光伏，汽车"/>
         <bond code="123170" name="南电转债" weightage="8" desc="半导体，光刻胶"/>
@@ -30,31 +33,33 @@
         <bond code="118026" name="利元转债" weightage="1"/>
         <bond code="110084" name="贵燃转债"/>
         <bond code="113631" name="皖天转债"/>
+        <bond code="128083" name="新北转债"/>
+        <bond code="127027" name="靖远转债"/>
+        <bond code="113591" name="胜达转债"/>
+        <bond code="127066" name="科利转债" weightage="1" desc="特斯拉4680电池结构件"/>
   </watch_list>
     <my_list>
+        <bond code="113524" name="奇精转债" desc="低规模"/>
+        <bond code="128049" name="华源转债"/>
         <bond code="113644" name="艾迪转债" weightage="5" desc="机器人"/>
         <bond code="123044" name="红相转债"/>
         <bond code="113659" name="莱克转债" weightage="5"/>
         <bond code="113542" name="好客转债"/>
         <bond code="123126" name="瑞丰转债" desc="税前收益高，规模低，溢价高，未来六个月至 2023 年 2月 21 日不下修"/>
         <bond code="123063" name="大禹转债"/>
-        <bond code="113591" name="胜达转债"/>
         <bond code="118000" name="嘉元转债" weightage="1" desc="股价高，"/>
         <bond code="113060" name="浙22转债"/>
         <bond code="128037" name="岩土转债"/>
         <bond code="128042" name="凯中转债"/>
         <bond code="128133" name="奇正转债"/>
-        <bond code="128083" name="新北转债"/>
         <bond code="127075" name="百川转2" weightage="1"/>
         <bond code="113563" name="柳药转债" weightage="1"/>
         <bond code="110085" name="通22转债" weightage="6"/>
-        <bond code="127066" name="科利转债" weightage="1"/>
         <bond code="113602" name="景20转债" weightage="1"/>
         <bond code="110057" name="现代转债"/>
         <bond code="127051" name="博杰转债"/>
         <bond code="118022" name="锂科转债" weightage="1"/>
         <bond code="110089" name="兴发转债" weightage="1"/>
-        <bond code="127027" name="靖远转债"/>
         <bond code="123100" name="朗科转债"/>
         <bond code="128085" name="鸿达转债"/>
         <bond code="118005" name="天奈转债" weightage="5"/>

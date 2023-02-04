@@ -1,17 +1,24 @@
-import akshare as ak
 import config
-import constant
+from common import constants
 import pandas as pd
 
 
-def download_report():
-    df = ak.stock_yjbb_em(date="20220930")
-    df.to_csv(constant.stock_result_file, index=False, lineterminator='\n', encoding='utf_8_sig')
+def write_report(df_list):
+    # write html to file
+    with open(constants.fund_template_file, "r") as input_file, open(constants.fund_stock_report_file, "w") as output_file:
+        template_content = input_file.read()
+        index = 0
+        for df in df_list:
+            place_holder = "table_place_holder_{}".format(index)
+            index += 1
+            html_content = df.to_html(classes='table table-stripped')
+            template_content = template_content.replace("<%{}%>".format(place_holder), html_content)
+        output_file.write(template_content)
 
 
 def generate_report():
-    fund_result = pd.read_csv(constant.fund_result_file)
-    stock_result = pd.read_csv(constant.stock_result_file)
+    fund_result = pd.read_csv(constants.fund_csv_file)
+    stock_result = pd.read_csv(constants.stock_csv_file)
     df_all = pd.merge(fund_result, stock_result, how='left', on='股票代码')
     df_all = df_all.rename(columns=lambda s: s.replace("-", "").replace("/", ""))
     df_all = df_all.rename(columns=lambda s: s.replace("营业收入同比增长", "营收同比").replace("营业收入季度环比增长", "营收环比"))
@@ -66,22 +73,8 @@ def generate_report():
     write_report([df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7])
 
 
-def write_report(df_list):
-    # write html to file
-    with open(constant.template_file, "r") as input_file, open(constant.report_file, "w") as output_file:
-        template_content = input_file.read()
-        index = 0
-        for df in df_list:
-            place_holder = "table_place_holder_{}".format(index)
-            index += 1
-            html_content = df.to_html(classes='table table-stripped')
-            template_content = template_content.replace("<%{}%>".format(place_holder), html_content)
-        output_file.write(template_content)
-
-
 if __name__ == "__main__":
     # round to two decimal places in python pandas
     pd.options.display.float_format = '{:.2f}'.format
 
-    # download_report()
     generate_report()

@@ -5,9 +5,8 @@ import logging
 import os
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.ui import Select
 
-from common import utils, log_config
+from src.python.common import log_config
 
 logger = logging.getLogger()
 

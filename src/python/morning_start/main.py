@@ -1,7 +1,7 @@
 
 import logging
-from common import log_config
-from morning_start import morning_star, fund_stat
+from src.python.common import log_config
+from src.python.morning_start import morning_star, fund_stat
 
 logger = logging.getLogger()
 
