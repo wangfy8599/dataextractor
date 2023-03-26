@@ -1,12 +1,12 @@
 import pandas as pd
 
 import fund_util
-from bond.config import read_my_list, read_watch_list, read_high_weightage_list
+from bond.config import read_my_list, read_watch_list, read_high_weightage_list, read_exclude_list
 from common import constants
 from common.analysis_util import write_csv_file
 
 
-def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9):
+def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9, df_10):
     html_0 = df_0.to_html(classes='table table-stripped')
     html_1 = df_1.to_html(classes='table table-stripped')
     html_2 = df_2.to_html(classes='table table-stripped')
@@ -17,6 +17,7 @@ def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9):
     html_7 = df_7.to_html(classes='table table-stripped')
     html_8 = df_8.to_html(classes='table table-stripped')
     html_9 = df_9.to_html(classes='table table-stripped')
+    html_10 = df_10.to_html(classes='table table-stripped')
 
     # write html to file
     with open(constants.bond_template_file, "r") as input_file, open(constants.bond_report_file, "w") as output_file:
@@ -30,7 +31,8 @@ def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9):
             .replace("<%table_place_holder_6%>", html_6) \
             .replace("<%table_place_holder_7%>", html_7) \
             .replace("<%table_place_holder_8%>", html_8) \
-            .replace("<%table_place_holder_9%>", html_9)
+            .replace("<%table_place_holder_9%>", html_9) \
+            .replace("<%table_place_holder_10%>", html_10)
         output_file.write(final_html)
 
 
@@ -55,7 +57,8 @@ def main():
         df_0.index = df_0.index + 1
 
         # 辰星双低
-        df_1 = df_all.query(""" 股价 > 3 and 剩余年限 > "1.00" and PB > 1.3 """)
+        df_1 = df_all[~df_all["转债代码"].isin(read_exclude_list())]
+        df_1 = df_1.query(""" 股价 > 3 and 剩余年限 > "1.00" and PB > 1.05 """)
         df_1 = df_1.query(""" 转债价格 < 125 and not (转债名称.str.contains("\\*")) """).sort_values(by=['辰星双低'], ascending=True).head(30)
         df_1.reset_index(drop=True, inplace=True)
         df_1.index = df_1.index + 1
@@ -85,7 +88,7 @@ def main():
         df_5.index = df_5.index + 1
 
         # 辰星三低
-        df_6 = df_all.query(""" 股价 > 3 and 剩余年限 > "1.00" and  PB > 1.3 """)
+        df_6 = df_all.query(""" 股价 > 3 and 剩余年限 > "1.00" and  PB > 0.3 """)
         df_6 = df_6.query(""" 转债价格 < 125 and not (转债名称.str.contains("\\*")) """).sort_values(by=['辰星三低'],
                                                                                                      ascending=True).head(
             30)
@@ -93,7 +96,7 @@ def main():
         df_6.index = df_6.index + 1
 
         # 税前收益率
-        df_7 = df_all.query(""" 股价 > 3 and 剩余年限 > "1.00" and  PB > 1.3 """)
+        df_7 = df_all.query(""" 股价 > 3 and 剩余年限 > "1.00" and  PB > 0.3 """)
         df_7 = df_7.query(""" 转债价格 < 125 and not (转债名称.str.contains("\\*")) """).sort_values(by=['税前收益率'],
                                                                                                      ascending=False).head(
             30)
@@ -101,7 +104,7 @@ def main():
         df_7.index = df_7.index + 1
 
         # 股价高
-        df_8 = df_all.query(""" 股价 > 3 and 剩余年限 > "1.00" and  PB > 1.3 """)
+        df_8 = df_all.query(""" 股价 > 3 and 剩余年限 > "1.00" and  PB > 0.3 """)
         df_8 = df_8.query(""" 转债价格 < 125 and not (转债名称.str.contains("\\*")) """).sort_values(by=['股价'],
                                                                                                      ascending=False).head(
             30)
@@ -109,15 +112,21 @@ def main():
         df_8.index = df_8.index + 1
 
         # 转债余额
-        df_9 = df_all.query(""" 股价 > 3 and 剩余年限 > "1.00" and  PB > 1.3 """)
+        df_9 = df_all.query(""" 股价 > 3 and 剩余年限 > "1.00" and  PB > 0.3 """)
         df_9 = df_9.query(""" 转债价格 < 125 and not (转债名称.str.contains("\\*")) """).sort_values(by=['转债余额'],
                                                                                                      ascending=True).head(
             30)
         df_9.reset_index(drop=True, inplace=True)
         df_9.index = df_9.index + 1
 
+        # 自选 (剩余年限)
+        df_10 = df_all[df_all["转债代码"].isin(read_my_list())]
+        df_10 = df_10.sort_values(by=['剩余年限'], ascending=True)
+        df_10.reset_index(drop=True, inplace=True)
+        df_10.index = df_10.index + 1
+
         #
-        write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9)
+        write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9, df_10)
 
 
 if __name__ == "__main__":

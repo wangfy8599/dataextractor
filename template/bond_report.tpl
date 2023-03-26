@@ -54,6 +54,9 @@
 <h3>转债余额</h3>
 <%table_place_holder_9%>
 
+<h3>我的持仓 (剩余年限)</h3>
+<%table_place_holder_10%>
+
 </body>
   
 </html>

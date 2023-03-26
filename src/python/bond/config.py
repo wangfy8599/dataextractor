@@ -28,5 +28,10 @@ def read_watch_list():
     return df["code"].tolist()
 
 
+def read_exclude_list():
+    df = pd.read_xml(bond_config_file, xpath="/bonds/exclude_list/bond", encoding="utf-8")
+    return df["code"].tolist()
+
+
 if __name__ == "__main__":
     read_my_list()

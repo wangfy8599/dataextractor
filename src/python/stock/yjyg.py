@@ -6,7 +6,7 @@ import pandas as pd
 
 
 def generate_raw_report():
-    df = ak.stock_yjyg_em(date="20221231")
+    df = ak.stock_yjyg_em(date="20230331")
     df = format_report(df)
     write_csv_file(df, constants.yjyg_raw_csv_file)
 

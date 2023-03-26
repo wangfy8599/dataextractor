@@ -19,7 +19,7 @@ def generate_report():
 
     df_0 = df_all[df_all["转债代码"].isin(config.read_high_weightage_list())]
     df_0 = df_0.query(""" 转债价格 < 130 and 利润同比>-1000 """)
-    df_0 = df_0.sort_values(by=['辰星双低'], ascending=True)
+    df_0 = df_0.sort_values(by=['利润同比'], ascending=False)
     df_0.reset_index(drop=True, inplace=True)
     df_0.index = df_0.index + 1
 

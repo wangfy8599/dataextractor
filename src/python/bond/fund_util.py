@@ -23,6 +23,7 @@ def change_remain_days(x):
                 day = float(m.group(1))
                 x = "{:.02f}".format(day/366)
             else:
+                print(x)
                 raise
     return x
 
