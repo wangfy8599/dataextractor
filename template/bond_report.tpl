@@ -19,6 +19,11 @@
         tr:nth-child(even) {
             background-color: #dcdcdc;
         }
+        
+        tr:hover {
+            background-color: LightSkyBlue;
+            cursor: pointer;
+        }
     </style>
 </head>
   

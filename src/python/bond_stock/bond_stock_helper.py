@@ -1,5 +1,7 @@
 from common import constants
 import pandas as pd
+from common.constants import risk_place_holder, short_time_place_holder, short_time_html, risk_html
+
 
 
 def write_stock_report(df_list, report_file):
@@ -22,5 +24,8 @@ def write_html_report(df_list, template_file,  report_file):
             place_holder = "table_place_holder_{}".format(index)
             index += 1
             html_content = df.to_html(classes='table table-stripped')
-            template_content = template_content.replace("<%{}%>".format(place_holder), html_content)
+            template_content = template_content\
+                .replace("<%{}%>".format(place_holder), html_content)\
+                .replace(risk_place_holder, risk_html)\
+                .replace(short_time_place_holder, short_time_html)
         output_file.write(template_content)

@@ -1,23 +1,24 @@
 import pandas as pd
 
 import fund_util
-from bond.config import read_my_list, read_watch_list, read_high_weightage_list, read_exclude_list
 from common import constants
+from bond.config import read_my_list, read_watch_list, read_high_weightage_list, read_exclude_list
+from common.constants import risk_place_holder, short_time_place_holder, short_time_html, risk_html
 from common.analysis_util import write_csv_file
 
 
 def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9, df_10):
-    html_0 = df_0.to_html(classes='table table-stripped')
-    html_1 = df_1.to_html(classes='table table-stripped')
-    html_2 = df_2.to_html(classes='table table-stripped')
-    html_3 = df_3.to_html(classes='table table-stripped')
-    html_4 = df_4.to_html(classes='table table-stripped')
-    html_5 = df_5.to_html(classes='table table-stripped')
-    html_6 = df_6.to_html(classes='table table-stripped')
-    html_7 = df_7.to_html(classes='table table-stripped')
-    html_8 = df_8.to_html(classes='table table-stripped')
-    html_9 = df_9.to_html(classes='table table-stripped')
-    html_10 = df_10.to_html(classes='table table-stripped')
+    html_0 = df_0.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
+    html_1 = df_1.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
+    html_2 = df_2.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
+    html_3 = df_3.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
+    html_4 = df_4.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
+    html_5 = df_5.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
+    html_6 = df_6.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
+    html_7 = df_7.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
+    html_8 = df_8.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
+    html_9 = df_9.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
+    html_10 = df_10.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
 
     # write html to file
     with open(constants.bond_template_file, "r") as input_file, open(constants.bond_report_file, "w") as output_file:
@@ -34,6 +35,10 @@ def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9, df_
             .replace("<%table_place_holder_9%>", html_9) \
             .replace("<%table_place_holder_10%>", html_10)
         output_file.write(final_html)
+
+
+def highlight_risk(s):
+    return ['background-color: blue']
 
 
 def main():

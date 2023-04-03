@@ -1,4 +1,5 @@
 import re
+from common import constants
 
 pattern_year_day = re.compile("([\\d\\.]+)year([\\d\\.]+)day")
 pattern_year = re.compile("([\\d\\.]+)year")
@@ -42,6 +43,8 @@ def format_data(df):
     df["辰星双低"] = df["转债溢价率"].astype(float) + df["转股溢价率"].astype(float)
     df["辰星三低"] = df["辰星双低"].astype(float) + df["转债余额"].astype(float) * 5
     df['股票代码'] = df['股票代码'].astype(str).str.zfill(6)
+    df.loc[(df['股价'] < 3) | (df['转债名称'] == "正邦转债") | (df['转债名称'].str.contains("长证转债")), '转债名称'] = df['转债名称'] + constants.risk_place_holder
+    df.loc[(df['剩余年限'].astype(float) < 1), '转债名称'] = df['转债名称'] + constants.short_time_place_holder
 
     return df
 

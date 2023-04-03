@@ -18,7 +18,7 @@ def generate_report():
             , "利润同比", "利润环比", "ROE", "每股现金流"]]
 
     df_0 = df_all[df_all["转债代码"].isin(config.read_high_weightage_list())]
-    df_0 = df_0.query(""" 转债价格 < 130 and 股价 > 3 and 剩余年限 > 1.0 and PB > 1.0 and 营收同比>0 and 利润同比>0 and ROE>5 and 每股现金流>0 """)
+    df_0 = df_0.query(""" 转债价格 < 130 and 股价 > 3 and 剩余年限 > 1.0 and PB >= 1.0 and 营收同比>0 and 利润同比>0 and ROE>5 and 每股现金流>0 """)
     df_0 = df_0.sort_values(by=['辰星双低'], ascending=True)
     df_0.reset_index(drop=True, inplace=True)
     df_0.index = df_0.index + 1
