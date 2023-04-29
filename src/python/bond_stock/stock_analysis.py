@@ -14,11 +14,11 @@ def generate_report():
     df_all = df_all.rename(columns=lambda s: s.replace("净资产收益率", "ROE").replace("每股经营现金流量", "每股现金流"))
     df_all = df_all[
         ["转债代码", "转债名称", "转债价格", "股价", "转股溢价率", "转债溢价率", "剩余年限",
-         "转债余额", "税前收益率", "PB", "辰星双低", "辰星三低", "营收同比", "营收环比"
-            , "利润同比", "利润环比", "ROE", "每股现金流"]]
+         "转债余额", "税前收益率", "PB", "辰星双低", "辰星三低", "营收同比"
+            , "利润同比", "利润环比", "ROE", "每股现金流", "公告日期"]]
 
     df_0 = df_all[df_all["转债代码"].isin(config.read_high_weightage_list())]
-    df_0 = df_0.query(""" 转债价格 < 130 and 股价 > 3 and 剩余年限 > 1.0 and PB >= 1.0 and 营收同比>0 and 利润同比>0 and ROE>5 and 每股现金流>0 """)
+    df_0 = df_0.query(""" 转债价格 < 132 and 股价 > 3 and 剩余年限 > 1.0 and PB >= 0.99 and 营收同比>-5 and 利润同比>0 and ROE>2 and 每股现金流>-0.5 """)
     df_0 = df_0.sort_values(by=['辰星双低'], ascending=True)
     df_0.reset_index(drop=True, inplace=True)
     df_0.index = df_0.index + 1
@@ -48,13 +48,13 @@ def generate_report():
     df_5.reset_index(drop=True, inplace=True)
     df_5.index = df_5.index + 1
 
-    df_6 = df_all.query(""" 转债价格 < 130 and 股价 > 3 and 剩余年限 > 1.0 and PB > 1.0 and 营收同比>0 and 利润同比>10 and ROE>9 and 每股现金流>0 """)
+    df_6 = df_all.query(""" 转债价格 < 125 and 股价 > 3 and 剩余年限 > 1.0 and PB > 1.0 and 营收同比>10 and 利润同比>30 and ROE>2 and 每股现金流>0 """)
     df_6 = df_6.sort_values(by=['辰星双低'], ascending=True).head(3000)
     df_6.reset_index(drop=True, inplace=True)
     df_6.index = df_6.index + 1
 
-    df_7 = df_all.query(""" 转债价格 < 125 and 股价 > 3 and 剩余年限 > 1.0 and PB > 1.0 and 营收同比>0 and 利润同比>10 and ROE>9 """)
-    df_7 = df_7.sort_values(by=['辰星三低'], ascending=True).head(3000)
+    df_7 = df_all.query(""" 转债价格 < 125 and 股价 > 3 and 剩余年限 > 1.0 and PB > 1.0 and 营收同比>10 and 利润同比>30 and ROE>2 and 每股现金流>0 """)
+    df_7 = df_7.sort_values(by=['利润同比'], ascending=False).head(3000)
     df_7.reset_index(drop=True, inplace=True)
     df_7.index = df_7.index + 1
 

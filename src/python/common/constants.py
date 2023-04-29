@@ -8,7 +8,7 @@ short_time_place_holder = "SHORT_TIME_PLACE_HOLDER"
 risk_html = """<font color="red"><b>*</b></font>"""
 short_time_html = """<font color="blue"><b>*</b></font>"""
 
-bond_input_file = base_dir + r"\input\2023\4\1.html"
+bond_input_file = base_dir + r"\input\2023\4\28.html"
 bond_template_file = base_dir + r"\template\bond_report.tpl"
 bond_csv_file = base_dir + r"\result\bond.csv"
 bond_report_file = base_dir + r"\result\bond_report.html"
@@ -29,6 +29,7 @@ ggzjc_csv_file = base_dir + r"\result\ggzjc.csv"
 yjbg_csv_file = base_dir + r"\result\yjbg.csv"
 yjbg_csv_1_file = base_dir + r"\result\yjbg_1.csv"
 yjbg_csv_2_file = base_dir + r"\result\yjbg_2.csv"
+yjbg_csv_3_file = base_dir + r"\result\yjbg_3.csv"
 yjbg_report_file = base_dir + r"\result\yjbg.html"
 
 # 业绩快报

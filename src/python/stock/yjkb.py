@@ -3,7 +3,7 @@ from common.analysis_util import write_csv_file
 from common import constants
 from stock_helper import write_html_report, format_report
 
-df = ak.stock_yjkb_em(date="20221231")
+df = ak.stock_yjkb_em(date="20220331")
 
 df = format_report(df)
 df["每股现金流"] = df["每股净资产"].astype(float) * 0

@@ -3,7 +3,6 @@ import pandas as pd
 from common.constants import risk_place_holder, short_time_place_holder, short_time_html, risk_html
 
 
-
 def write_stock_report(df_list, report_file):
     write_html_report(df_list, constants.bond_stock_template_file, report_file)
 
