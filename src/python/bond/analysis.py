@@ -7,7 +7,7 @@ from common.constants import risk_place_holder, short_time_place_holder, short_t
 from common.analysis_util import write_csv_file
 
 
-def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9, df_10):
+def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9, df_10, df_11):
     html_0 = df_0.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
     html_1 = df_1.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
     html_2 = df_2.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
@@ -19,6 +19,7 @@ def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9, df_
     html_8 = df_8.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
     html_9 = df_9.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
     html_10 = df_10.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
+    html_11 = df_11.to_html(classes='table table-stripped').replace(risk_place_holder, risk_html).replace(short_time_place_holder, short_time_html)
 
     # write html to file
     with open(constants.bond_template_file, "r") as input_file, open(constants.bond_report_file, "w") as output_file:
@@ -33,7 +34,8 @@ def write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9, df_
             .replace("<%table_place_holder_7%>", html_7) \
             .replace("<%table_place_holder_8%>", html_8) \
             .replace("<%table_place_holder_9%>", html_9) \
-            .replace("<%table_place_holder_10%>", html_10)
+            .replace("<%table_place_holder_10%>", html_10) \
+            .replace("<%table_place_holder_11%>", html_11)
         output_file.write(final_html)
 
 
@@ -50,7 +52,7 @@ def main():
         df_all = fund_util.format_data(df_all[0])
         df_all = df_all[
             ["转债代码", "转债名称", "转债价格", "股票代码", "股价", "转股溢价率", "纯债价值", "转债溢价率", "剩余年限",
-             "转债余额", "税前收益率", "PB", "辰星双低", "辰星三低"]]
+             "转债余额", "税前收益率", "PB", "辰星双低", "辰星三低", "辰星四低"]]
 
         write_csv_file(df_all, constants.bond_csv_file)
 
@@ -108,11 +110,10 @@ def main():
         df_7.reset_index(drop=True, inplace=True)
         df_7.index = df_7.index + 1
 
-        # 股价高
-        df_8 = df_all.query(""" 股价 > 3 and 剩余年限 > "1.00" and  PB > 0.3 """)
-        df_8 = df_8.query(""" 转债价格 < 125 and not (转债名称.str.contains("\\*")) """).sort_values(by=['股价'],
-                                                                                                     ascending=False).head(
-            30)
+        # 重仓四低
+        df_8 = df_all[df_all["转债代码"].isin(read_high_weightage_list())]
+        df_8 = df_8.query(""" 股价 > 3 and 剩余年限 > "1.00" and  PB > 1 """)
+        df_8 = df_8.query(""" 转债价格 < 127 and not (转债名称.str.contains("\\*")) """).sort_values(by=['辰星四低'], ascending=True).head(50)
         df_8.reset_index(drop=True, inplace=True)
         df_8.index = df_8.index + 1
 
@@ -130,8 +131,15 @@ def main():
         df_10.reset_index(drop=True, inplace=True)
         df_10.index = df_10.index + 1
 
+        # 自选 (剩余年限)
+        df_11 = df_all[df_all["转债代码"].isin(read_my_list())]
+        df_11 = df_11.query(""" 转债余额 < 6 and 税前收益率 > 0 """)
+        df_11 = df_11.sort_values(by=['转债余额'], ascending=True)
+        df_11.reset_index(drop=True, inplace=True)
+        df_11.index = df_11.index + 1
+
         #
-        write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9, df_10)
+        write_report(df_0, df_1, df_2, df_3, df_4, df_5, df_6, df_7, df_8, df_9, df_10, df_11)
 
 
 if __name__ == "__main__":

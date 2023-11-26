@@ -53,7 +53,7 @@
 <h3>税前收益率</h3>
 <%table_place_holder_7%>
 
-<h3>股价高</h3>
+<h3>辰星四低</h3>
 <%table_place_holder_8%>
 
 <h3>转债余额</h3>
@@ -61,6 +61,9 @@
 
 <h3>我的持仓 (剩余年限)</h3>
 <%table_place_holder_10%>
+
+<h3>我的持仓 (转债余额)</h3>
+<%table_place_holder_11%>
 
 </body>
   

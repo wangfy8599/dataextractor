@@ -8,12 +8,11 @@ from common.analysis_util import write_csv_file
 def generate_report(report_days):
     df_arr = []
     for report_day in report_days:
-        df_arr.append(ak.stock_yjbb_em(date=report_day))
-    df = pd.concat(df_arr).drop_duplicates(["股票简称"], keep="last")
-    df = format_report(df)
+        df_arr.append(ak.stock_fhps_em(date=report_day))
+    # df = pd.concat(df_arr).drop_duplicates(["股票简称"], keep="last")
+    df = format_report(df_arr)
     df = df[
-        ["股票代码", "股票简称", "每股收益", "营业收入", "营收同比", "营收环比", "净利润",
-         "利润同比", "利润环比", "每股现金流", "ROE", "所处行业", "公告日期"]]
+        ["代码", "名称", "现金分红-现金分红比例", "现金分红-股息率", "每股未分配利润", "净利润同比增长", "最新公告日期"]]
     df_arr[0] = df.query("营收同比 > 30 and 利润同比 > 30 and 净利润 > 1 and ROE > 9 and 每股现金流 > 0")
     df_arr[0].reset_index(drop=True, inplace=True)
     df_arr[0].index = df_arr[0].index + 1
@@ -28,4 +27,4 @@ def generate_report(report_days):
 
 
 if __name__ == "__main__":
-    generate_report(["20230930"])
+    generate_report(["20230331"])

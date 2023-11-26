@@ -6,4 +6,4 @@ def script_dir():
 
 
 def write_csv_file(df, file_name):
-    df.to_csv(file_name, index=False, lineterminator='\n', encoding='utf_8_sig')
+    df.to_csv(file_name, index=False, lineterminator='\n', encoding='utf_8_sig', escapechar="|")
